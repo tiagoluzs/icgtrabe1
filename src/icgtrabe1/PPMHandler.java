@@ -25,7 +25,6 @@ public class PPMHandler {
     
     {
      PALLETE_APPLE = Arrays.asList(new RGB(255, 255, 255), new RGB(251, 243, 5),new RGB(1, 100, 3), new RGB(221, 9, 7), new RGB(242, 8, 132), new RGB(71, 0, 165), new RGB(0, 0, 211), new RGB(2, 171, 234), new RGB(31, 183, 20), new RGB(0, 100, 18), new RGB(86, 44, 5), new RGB(144, 113, 58), new RGB(192, 192, 192), new RGB(128, 128, 128), new RGB(64, 64, 64), new RGB(0, 0, 0));
-    
     }
     
     void colorGrayScale(PPMFile ppm, int size) {
@@ -39,7 +38,7 @@ public class PPMHandler {
         for(int i = 0; i<256;i+=step) {
             pallete.add(new RGB(i,i,i));
         }
-        
+                        
         for (int i = 0; i < ppm.data.size();i++) {
             for (int j = 0; j < ppm.data.get(i).size();j++) {
                 RGB pixel = ppm.data.get(i).get(j);
@@ -106,36 +105,7 @@ public class PPMHandler {
 
         ppm.maxColorValue = max;
     }
-    
-    public static void main(String[] args) {
-        
-        PPMHandler ppm = new PPMHandler();
-        
-        System.out.println("CORES:");
-        for(RGB cor : ppm.PALLETE_APPLE) {
-            System.out.println(cor);
-        }
-        System.out.println("=========");
-        double min = Double.MAX_VALUE;
-        
-        RGB branco = new RGB(255,255,255);
-        RGB novaCor = branco;
-        for(RGB cor : ppm.PALLETE_APPLE) {
-            double dist = ppm.dist(branco, cor);
-            System.out.print(dist + " " + min);
-            if(dist < min){
-                min = dist;
-                novaCor = cor;
-                System.out.print(" ==> " + novaCor );
-            } else {
-                System.out.print(" > " + cor );
-            }
-            System.out.println("");
-        }
-        System.out.println(min);
-        System.out.println(novaCor);
-    }
-    
+       
     public double dist(RGB c1, RGB c2) {
         return Math.sqrt(Math.pow(c1.r - c2.r, 2) + Math.pow(c1.g - c2.g, 2) + Math.pow(c1.b - c2.b, 2));
     }
